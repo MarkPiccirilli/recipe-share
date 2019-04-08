@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+        <link rel="stylesheet" href="css/main_stylesheet.css" type="text/css">
+	<script src="ingredients.js"></script>
+    </head>
+    <body>
+		<form action="./contributeRecipe" method="POST">
+			<h3>Recipe Name:</h3>
+			<input type="text" name="name">
+			<h3>Cookware:</h3>
+			<input type="text"><br>
+			<h3>Instructions:<h3>
+			<input type="text" name="instructions" id="instructions_input"><br>
+			<h3>Meal Type:</h3>
+			<select name="meal_type"><br>
+			<option disable selected value> -- select and option -- </option>
+			<option value="dinner">Dinner</option>
+			<option value="lunch">Lunch</option>
+			<option value="breakfast">Breakfast</option>
+			<option value="snack">Snack</option>
+			<option value="appitizer">Appitizer</option>
+			<option value="drink">Drink</option>
+			</select><br>
+			<h3>Ethnic Cuisine:</h3>
+			<select name="ethnic_cuisine">
+			<option disable selected value> -- select and option -- </option>
+			<option value="chinese">Chinese</option>
+			<option value="mexican">mexican</option>
+			<option value="italian">Italian</option>
+			<option value="greek">Greek</option>
+			<option value="french">French</option>
+			<option value="thai">Thai</option>
+			<option value="spanish">Spanish</option>
+			<opiton value="indian">Indian</option>
+			<option value="mediterranean">Mediterranean</option>
+			</select><br>
+			<h3>Number Of Servings:</h3>
+			<input type="text" name="servings">
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+
+	    <h3>Intgredients:</h3>
+	    <form>
+		<input type="text" id="newIngredient">
+		<input type="submit" id="addIngredient">
+	    </form>
+	    <table id="ingredientTable">
+		<thead>
+		    <tr>
+			<th>Ingredient Name</th>
+			<th>Serving Size</th>
+			<th>Serving Size Units</th>
+			<th>Quantity (in serving size units)</th>
+			<th>Calories</th>
+			<th>Total Fat</th>
+			<th>Colesterol</th>
+			<th>Sodium</th>
+			<th>Total Carbohydrate</th>
+			<th>Total Sugar</th>
+			<th>Protein</th>
+			<th>Delete Item</th>
+		    </tr>
+		</thead>
+	    </table>
+	<a href="index.html" class="link">Back to home page</a>
+    </body>
+</html>

@@ -1,0 +1,7 @@
+<h1 class="title">Search Results</h1>
+	<ul>
+        {{#each recipes}}
+		<li><a href="/recipes/{{this.id}}" class="link">{{this.name}}</a>
+	    {{/each}}
+    </ul>
+    <a href="../index.html" class="link">Back To Home Page</a>

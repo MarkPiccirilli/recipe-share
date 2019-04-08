@@ -25,16 +25,18 @@ app.use('/static', express.static('public'));
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 app.set('mysql', mysql);
-//app.use('/', require('./search_results.js'));
-//app.use('/', require('./recipe_display.js'));
-//app.use('/', require('./contributor.js'));
-//app.use('/', require('./contribute_recipe.js'));
 app.use('/', require('./createAccount.js'));
 app.use('/', require('./myAccount.js'));
-//app.use('/', require('./login.js'));
+app.use('/', require('./updateAccount.js'));
+app.use('/', require('./loadUpdateAccount.js'));
+app.use('/', require('./updatePassword.js'));
+app.use('/', require('./logout.js'));
+app.use('/', require('./loadContributeRecipe.js'));
+app.use('/', require('./contribute_recipe.js'));
+app.use('/', require('./recipeDisplay.js'));
+app.use('/', require('./contributor.js'));
+app.use('/', require('./searchResults.js'));
 app.post('/login', passport.authenticate('local', {successRedirect: '/index.html', failureRedirect: '/login.html', failureFlash: true}));
-console.log('test');
-//app.get('/login', function(req,res){res.render('')});
 app.use('/', express.static('public'));
 
 app.use(function(req,res) {

@@ -1,5 +1,5 @@
 module.exports = function(passport, LocalStrategy, mysql) {
-	
+	const bcrypt = require('bcrypt');
 	passport.use(new LocalStrategy(//{usernameField: 'user_name', passwordField: 'user_password'}, 
 		function(username, password, done) {
 			if(!username || !password) {
@@ -12,22 +12,26 @@ module.exports = function(passport, LocalStrategy, mysql) {
 		    mysql.pool.query(sql, [username], function(err, user) {
 				console.log(user);
 		    if(err) {
-					console.log('err');
+				console.log('err');
 			return done(err);
 		    }
 		    if(!user[0]) {
-					console.log('username not found');
+				console.log('username not found');
 			return done(null,false, {message: 'Username not found'});
 				}
 				//console.log("up: " + user[0].user_password);
 				//console.log('p: ' + password);
 				//console.log(password.localeCompare(user[0].user_password));
-		    if(password.localeCompare(user[0].user_password)) {
-					console.log('incorrect password');
-			return done(null, false, {message: 'Incorrect Password'})
-				}
-				console.log('correct!');
-		    return done(null, user[0]);
+		    bcrypt.compare(password, user[0].user_password, function(err, res) {
+                if(res == false) {
+                    console.log('incorrect password');
+                    return done(null, false, {message: 'Incorrect Password'})
+                }
+                else {
+                    console.log('correct!');
+		            return done(null, user[0]);    
+                }
+            });
 		});
 	    }
 	));

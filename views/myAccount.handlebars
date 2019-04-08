@@ -1,18 +1,17 @@
-{{#each  myAccountInfo}}
-    <h1 class="title">My Account</h1>
-    <ul>
-        <li class="account_list">First Name: {{first_name}}</li>
-        <li class="account_list">Last Name: {{last_name}}</li>
-        <li class="account_list">User Name: {{user_name}}</li>
-        <li class="account_list">Email: {{email}}</li>
-        <li class="account_list">Cooking Experience: {{cooking_experience}}</li>
-    </ul>
-    <h2>Recipes contributed</h2>
-    <ul>
-        {{#each recipe}}
-        <li class="account_list">{{recipe_name}}
-        {{/each}}
-    </ul>
-    <a href="./update_account" class="link">Update Account</a><br>
-    <a href="../index.html" class ="link">Back to home page</a>
-{{/each}}
+<h1 class="title">My Account</h1>
+<ul>
+    <li class="account_list">First Name: {{accountInfo.first_name}}</li>
+    <li class="account_list">Last Name: {{accountInfo.last_name}}</li>
+    <li class="account_list">User Name: {{accountInfo.user_name}}</li>
+    <li class="account_list">Email: {{accountInfo.email}}</li>
+    <li class="account_list">Cooking Experience: {{accountInfo.cooking_experience}}</li>
+</ul>
+<h2>Recipes contributed</h2>
+<ul>
+    {{#each recipes}}
+    <a href="/recipes/{{this.id}}" class="account_list">{{this.name}}</a><br>
+    {{/each}}
+</ul>
+<a href="loadUpdateAccount" class="link">Update Account</a><br>
+<a href="../index.html" class ="link">Back to home page</a>
+

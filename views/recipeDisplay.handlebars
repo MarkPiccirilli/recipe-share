@@ -1,0 +1,31 @@
+<h1 class = "title">{{name}}</h1>
+<h2>Ingredients</h2>
+<ul>
+    {{#each ../ingredients}}
+    <li>{{ingredient_name}}, {{ingredient_quantity}}</li>
+    {{/each}}
+</ul>
+
+<h2>Cookware</h2>
+<table>
+    <thead>
+	<th>name</th>
+	<th>price</th>
+    </thead>
+    {{#each ../cookware}}
+    <tr>
+	<td>{{cookware_name}}</td>
+	<td>{{cost}}</td>
+    </tr>
+    {{/each}}
+</table> 
+<h2>Instructions</h2>
+<p>{{instructions}}</p>
+<h2>Contributor: <a href="/contributor/{{user_id}}">{{first_name}} {{last_name}}</a></h2>
+<h4>Date Contriuted: {{date_contributed}}</h4>
+<h4>Meal Type: {{meal_type}}</h4>
+<h4>Ethnic Cuisine: {{ethnic_cuisine}}</h4>
+
+<a href=nutrition.handlebars class="link">Recipe nutrition information</a><br>
+<a href="../index.html" class="link ">Back to home page</a>
+
