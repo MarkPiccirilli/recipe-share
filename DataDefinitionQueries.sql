@@ -112,6 +112,18 @@ CREATE TABLE `recipe_ingredients` (
     FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
+-- create recipe comments table
+
+CREATE TABLE `recipe_comments` (
+    `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `recipe_id` int(11),
+    `comment_writer_id` int(11),
+    `comment_writer` varchar(255),
+    `recipe_comment` varchar(5000),
+    FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON UPDATE CASCADE,
+    FOREIGN KEY (`comment_writer_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 
 -- Insert sample Data
 
