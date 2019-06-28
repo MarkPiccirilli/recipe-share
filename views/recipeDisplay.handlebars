@@ -1,4 +1,4 @@
-<h1 class = "title">{{name}}</h1>
+<h1 class = "title">{{recipe.0.name}}</h1>
 <h2>Ingredients</h2>
 <ul>
     {{#each ../ingredients}}
@@ -20,12 +20,27 @@
     {{/each}}
 </table> 
 <h2>Instructions</h2>
-<p>{{instructions}}</p>
-<h2>Contributor: <a href="/contributor/{{user_id}}">{{first_name}} {{last_name}}</a></h2>
-<h4>Date Contriuted: {{date_contributed}}</h4>
-<h4>Meal Type: {{meal_type}}</h4>
-<h4>Ethnic Cuisine: {{ethnic_cuisine}}</h4>
+<p>{{recipe.0.instructions}}</p>
+<form name="contributorForm" action="./contibutor" method="POST">
+    <input type="hidden" name="id" value="{{recipe.0.user_id}}">
+    <h2>Contributor: <a href="/contributor/{{recipe.0.user_id}}">{{recipe.0.first_name}} {{recipe.0.last_name}}</a></h2>
+</form>
+<h4>Date Contriuted: {{recipe.0.date_contributed}}</h4>
+<h4>Meal Type: {{recipe.0.meal_type}}</h4>
+<h4>Ethnic Cuisine: {{recipe.0.ethnic_cuisine}}</h4>
 
 <a href=nutrition.handlebars class="link">Recipe nutrition information</a><br>
 <a href="../index.html" class="link ">Back to home page</a>
 
+<h2>Comments</h2>
+<h3>Submit Comment:</h3>
+<form action="../submitRecipeComment" method="POST">
+    <input type="text" name="comment" height="700px">
+    <input type="hidden" name="recipe_id" value="{{rid}}">
+    <input type="submit" value="Submit">
+</form>
+<ul>
+    {{#each comments}}
+        <li><a href="/contributor/{{comment_writer_id}}">{{comment_writer}}: </a><p>{{recipe_comment}}</p></li>
+    {{/each}}
+</ul>
