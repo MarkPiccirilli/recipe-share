@@ -53,8 +53,7 @@ module.exports = function() {
     }
     */
     function getRecipeCommentsById(req, res, mysql, context, complete) {
-        
-        var query = "SELECT comment_writer_id, comment_writer, recipe_comment FROM recipe_comments WHERE recipe_id=?";
+        var query = "SELECT id AS comment_id, comment_writer_id, comment_writer, recipe_comment, update_comment FROM recipe_comments WHERE recipe_id=?";
         var inserts = [req.params.id];
         mysql.pool.query(query, inserts, function(error, results, fields) {
             if(error) {
@@ -64,6 +63,15 @@ module.exports = function() {
             context.comments = results;
             console.log(results);
             console.log(context.comments);
+            for(i = 0; i < context.comments.length; i++) {
+                if(req.user[0].id == context.comments[i].comment_writer_id) {
+                    context.comments[i].userBool = true;
+                }
+                else {
+                    context.comments[i].userBool = false;
+                }
+                context.comments[i].recipeId = req.params.id;
+            }  
             complete();
         });    
     }

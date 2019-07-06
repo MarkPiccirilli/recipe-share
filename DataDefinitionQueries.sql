@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS `recipes`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `cookware`;
 DROP TABLE IF EXISTS `ingredients`;
+DROP TABLE IF EXISTS `recipe_comments`;
 
 -- Create the ingrediants table
 
@@ -120,6 +121,7 @@ CREATE TABLE `recipe_comments` (
     `comment_writer_id` int(11),
     `comment_writer` varchar(255),
     `recipe_comment` varchar(5000),
+    `update_comment` boolean,
     FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON UPDATE CASCADE,
     FOREIGN KEY (`comment_writer_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;

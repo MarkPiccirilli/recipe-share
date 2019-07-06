@@ -41,6 +41,28 @@
 </form>
 <ul>
     {{#each comments}}
-        <li><a href="/contributor/{{comment_writer_id}}">{{comment_writer}}: </a><p>{{recipe_comment}}</p></li>
+        <li><a href="/contributor/{{comment_writer_id}}">{{comment_writer}}: </a><p>{{recipe_comment}}</p>
+        {{#if userBool}}
+            <form action="../deleteRecipeComment" method="POST">
+                <input type="hidden" name="commentId" value="{{comment_id}}">
+                <input type="hidden" name="recipeId" value="{{recipeId}}">
+                <input type="submit" value="delete" class="link_button">
+            </form>
+            {{#if update_comment}}
+                <form action="../updateRecipeComment" method="POST">
+                    <input type="hidden" name="commentId" value="{{comment_id}}">
+                    <input type="hidden" name="recipeId" value="{{recipeId}}">  
+                    <input type="text" name="comment">
+                    <input type="submit" name="submit update">
+                </form>
+            {{else}}
+                <form action="../loadUpdateRecipeComment" method="POST">
+                    <input type="hidden" name="commentId" value="{{comment_id}}">
+                    <input type="hidden" name="recipeId" value="{{recipeId}}">
+                    <input type="submit" value="update comment" class="link_button">
+                </form>
+            {{/if}}
+        {{/if}}
+        </li>
     {{/each}}
 </ul>

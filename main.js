@@ -37,6 +37,9 @@ app.use('/', require('./recipeDisplay.js'));
 app.use('/', require('./contributor.js'));
 app.use('/', require('./searchResults.js'));
 app.use('/', require('./submitRecipeComment.js'));
+app.use('/', require('./deleteRecipeComment.js'));
+app.use('/', require('./updateRecipeComment.js'));
+app.use('/', require('./loadUpdateRecipeComment.js'));
 app.post('/login', passport.authenticate('local', {successRedirect: '/index.html', failureRedirect: '/login.html', failureFlash: true}));
 app.use('/', express.static('public'));
 
