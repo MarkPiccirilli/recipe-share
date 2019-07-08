@@ -4,7 +4,7 @@ module.exports = function() {
 
     router.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('index.html');
+        res.redirect('/');
     })
 
     return router;
