@@ -2,7 +2,16 @@ module.exports=function() {
     var express = require('express');
     var router = express.Router();
 
-    router.post('/submitRecipeComment', function(req, res) {
+    function checkAuthentication(req, res, next) {
+		if(req.isAuthenticated()) {
+			next();
+		}
+		else {
+			res.redirect('/login.html');
+		}
+	}
+
+    router.post('/submitRecipeComment', checkAuthentication, function(req, res) {
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO recipe_comments (recipe_id, comment_writer_id, comment_writer, recipe_comment, update_comment) VALUES (?, ?, ?, ?, ?)";
         console.log("subrid: " + req.body.recipe_id);

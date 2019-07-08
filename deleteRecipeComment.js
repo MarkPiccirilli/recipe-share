@@ -1,10 +1,17 @@
 module.exports=function() {
-    console.log("test1");
     var express = require("express");
     var router = express.Router();
 
-    router.post("/deleteRecipeComment", function(req, res) {
-        console.log("test2");
+    function checkAuthentication(req, res, next) {
+		if(req.isAuthenticated()) {
+			next();
+		}
+		else {
+			res.redirect('/login.html');
+		}
+	}
+
+    router.post("/deleteRecipeComment", checkAuthentication, function(req, res) {
         var mysql = req.app.get("mysql");
         var sql = "DELETE FROM recipe_comments WHERE id=?";
         var inserts = [req.body.commentId];
