@@ -64,7 +64,7 @@ module.exports = function() {
             console.log(results);
             console.log(context.comments);
             for(i = 0; i < context.comments.length; i++) {
-                if(req.user[0].id == context.comments[i].comment_writer_id) {
+                if(req.isAuthenticated() && req.user[0].id == context.comments[i].comment_writer_id) {
                     context.comments[i].userBool = true;
                 }
                 else {
