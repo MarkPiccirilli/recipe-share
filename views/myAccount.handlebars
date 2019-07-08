@@ -9,9 +9,15 @@
 <h2>Recipes contributed</h2>
 <ul>
     {{#each recipes}}
-    <a href="/recipes/{{this.id}}" class="account_list">{{this.name}}</a><br>
+    <li>
+        <a href="/recipes/{{this.id}}" class="account_list">{{this.name}}</a>
+        <form action="../deleteRecipe" method="POST">
+            <input type="hidden" name="recipeId" value="{{this.id}}">
+            <input type="submit" value="delete recipe" class="link_button">
+        </form>
+    </li>
     {{/each}}
 </ul>
 <a href="loadUpdateAccount" class="link">Update Account</a><br>
-<a href="../index.html" class ="link">Back to home page</a>
+<a href="../" class ="link">Back to home page</a>
 
