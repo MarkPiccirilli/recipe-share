@@ -49,7 +49,6 @@ module.exports = function() {
 		function complete() {
 			callBackCount++;
 			if(callBackCount > 1) {
-                console.log(context.recipes[2].name);
 				res.render('myAccount', {accountInfo: context.myAccountInfo[0], recipes: context.recipes});
 			}
 		}
