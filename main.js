@@ -42,7 +42,7 @@ app.use('/', require('./submitRecipeComment.js'));
 app.use('/', require('./deleteRecipeComment.js'));
 app.use('/', require('./updateRecipeComment.js'));
 app.use('/', require('./loadUpdateRecipeComment.js'));
-app.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login.html', failureFlash: true}));
+app.post('/login', passport.authenticate('local', {successRedirect: "/", failureRedirect: '/login.html', failureFlash: true}));
 app.use('/', express.static('public'));
 
 app.use(function(req,res) {
@@ -56,7 +56,9 @@ app.use(function(err, req, res, next) {
     res.render('500');
 });
 
-apikey = "2e6e42714a49946a628cd94d888b9fcf";
+
+//second server to handle ajax calls to ingredients api
+apikey = "46df9cf2af8f73285afae3515ae1a47e";
 apiid = "f4784748";
 
 var http = require("http");
@@ -71,10 +73,10 @@ http.createServer(function(req, res) {
     apireq.addEventListener("load", function() {
         if(apireq.status >= 200 && apireq.status <= 400) {
             console.log("respond test");
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.write(apireq.responseText);
             console.log("type: " + typeof(apireq.responseText));
             console.log(JSON.parse(apireq.responseText));
+            res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+            res.writeHead(200, {"Content-Type": "application/json"});
             res.end(apireq.responseText);
             console.log("respond test 2");
         }
