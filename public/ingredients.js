@@ -11,7 +11,7 @@ function ingredientSearch() {
     var newIngredient = document.getElementById('newIngredient').value;
     
     //req.open('GET', 'https://api.nutritionix.com/v1_1/search/' + newIngredient + '?results=0:1&fields=item_name,nf_serving_size_qty,nf_serving_size_unit,nf_calories,nf_total_fat,nf_colesterol,nf_sodium,nf_total_carbohydrate,nf_sugars,nf_protein&appId=' + appid + '&appKey=' + appkey, true);
-    req.open("GET", "http://localhost:3001/?newIngredient=" + newIngredient);
+    req.open("GET", "http://localhost:3001/?newIngredient=" + newIngredient, true);
 	req.addEventListener('load', function() {
 	    if(req.status >= 200 && req.status < 400) {
             console.log("respond test 3");
