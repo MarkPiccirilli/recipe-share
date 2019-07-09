@@ -1,13 +1,11 @@
-{{#each userInfo}}
-<h1 class="title">{{user_name}}</h1>
-<h2>{{first_name}} {{last_name}}</h2>
+<h1 class="title">{{userInfo.0.user_name}}</h1>
+<h2>{{userInfo.0.first_name}} {{userInfo.0.last_name}}</h2>
 <h3>Cooking Experience:</h3>
-<p>{{cooking_experience}}</p>
+<p>{{userInfo.0.cooking_experience}}</p>
 <h3>Recipes_Contributed</h3>
 <ul>
-    {{#each ../recipesContributed}}
+    {{#each recipesContributed}}
     <li><a href="/recipes/{{recipeId}}">{{name}}</a></li>
     {{/each}}
 </ul>
 <a href="../" class="link">back to home page</a>
-{{/each}}
