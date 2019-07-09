@@ -113,6 +113,16 @@ CREATE TABLE `recipe_ingredients` (
     FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
+-- modified recipe ingredients table
+
+CREATE TABLE `recipe_ingredients` (
+    `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    `recipe_id` int(11),
+    `ingredient_name` varchar(1023),
+    `ingredient_quantity` DECIMAL(19,4),
+    FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 -- create recipe comments table
 
 CREATE TABLE `recipe_comments` (
