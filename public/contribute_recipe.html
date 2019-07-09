@@ -10,8 +10,9 @@
 		<form action="./contributeRecipe" method="POST">
 			<h3>Recipe Name:</h3>
 			<input type="text" name="name">
-			<h3>Cookware:</h3>
-			<input type="text"><br>
+			<!-- <h3>Cookware:</h3>
+            <input type="text"><br> -->
+            <input type="hidden" name="ingredientNames" id="ingredientNames">
 			<h3>Instructions:<h3>
 			<input type="text" name="instructions" id="instructions_input"><br>
 			<h3>Meal Type:</h3>
@@ -41,31 +42,31 @@
 			<input type="text" name="servings">
 			<br>
 			<input type="submit" value="Submit">
-		</form>
+        </form>
+        <h3>Intgredients:</h3>
+        <form>
+            <input type="text" id="newIngredient">
+            <input type="submit" id="addIngredient">
+        </form>
+        <table id="ingredientTable">
+            <thead>
+                <tr>
+                <th>Ingredient Name</th>
+                <th>Serving Size</th>
+                <th>Serving Size Units</th>
+                <th>Quantity (in serving size units)</th>
+                <th>Calories</th>
+                <th>Total Fat</th>
+                <th>Colesterol</th>
+                <th>Sodium</th>
+                <th>Total Carbohydrate</th>
+                <th>Total Sugar</th>
+                <th>Protein</th>
+                <th>Delete Item</th>
+                </tr>
+            </thead>
+        </table>
 
-	    <h3>Intgredients:</h3>
-	    <form>
-		<input type="text" id="newIngredient">
-		<input type="submit" id="addIngredient">
-	    </form>
-	    <table id="ingredientTable">
-		<thead>
-		    <tr>
-			<th>Ingredient Name</th>
-			<th>Serving Size</th>
-			<th>Serving Size Units</th>
-			<th>Quantity (in serving size units)</th>
-			<th>Calories</th>
-			<th>Total Fat</th>
-			<th>Colesterol</th>
-			<th>Sodium</th>
-			<th>Total Carbohydrate</th>
-			<th>Total Sugar</th>
-			<th>Protein</th>
-			<th>Delete Item</th>
-		    </tr>
-		</thead>
-	    </table>
 	<a href="../" class="link">Back to home page</a>
     </body>
 </html>
