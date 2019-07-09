@@ -9,7 +9,8 @@ module.exports= function(){
         console.log("meal_type: " + req.body.meal_type);
         console.log("ethnic_cuisine: " + req.body.ethnic_cuisine);
         if(req.body.meal_type == "" && req.body.ethnic_cuisine == "" && req.body.keyword == "") {
-
+            query = "SELECT id, name FROM recipes";
+            inserts = [];
         }
         else if(req.body.meal_type == "" && req.body.ethnic_cuisine == "") {
             query = "SELECT id, name FROM recipes WHERE name=?;";
