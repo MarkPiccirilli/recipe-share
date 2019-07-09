@@ -21,9 +21,9 @@
 </table> 
 <h2>Instructions</h2>
 <p>{{recipe.0.instructions}}</p>
-<form name="contributorForm" action="./contibutor" method="POST">
+<form name="contributorForm" action="../contributor" method="POST">
     <input type="hidden" name="id" value="{{recipe.0.user_id}}">
-    <h2>Contributor: <a href="/contributor/{{recipe.0.user_id}}">{{recipe.0.first_name}} {{recipe.0.last_name}}</a></h2>
+    <h2>Contributor: <input type="submit" value="{{recipe.0.first_name}} {{recipe.0.last_name}}" class="link_button"></h2>
 </form>
 <h4>Date Contriuted: {{recipe.0.date_contributed}}</h4>
 <h4>Meal Type: {{recipe.0.meal_type}}</h4>
@@ -41,28 +41,40 @@
 </form>
 <ul>
     {{#each comments}}
-        <li><a href="/contributor/{{comment_writer_id}}">{{comment_writer}}: </a><p>{{recipe_comment}}</p>
-        {{#if userBool}}
-            <form action="../deleteRecipeComment" method="POST">
-                <input type="hidden" name="commentId" value="{{comment_id}}">
-                <input type="hidden" name="recipeId" value="{{recipeId}}">
-                <input type="submit" value="delete" class="link_button">
+        <li>
+            <form action="../contributor" method="POST">
+                <input type="hidden" name="id" value="{{comment_writer_id}}">
+                <input type="submit" value="{{comment_writer}}: " class="link_button">
+                <p>{{recipe_comment}}</p>
             </form>
-            {{#if update_comment}}
-                <form action="../updateRecipeComment" method="POST">
-                    <input type="hidden" name="commentId" value="{{comment_id}}">
-                    <input type="hidden" name="recipeId" value="{{recipeId}}">  
-                    <input type="text" name="comment">
-                    <input type="submit" name="submit update">
-                </form>
-            {{else}}
-                <form action="../loadUpdateRecipeComment" method="POST">
+            {{#if ownerBool}}
+                <form action="../deleteRecipeComment" method="POST">
                     <input type="hidden" name="commentId" value="{{comment_id}}">
                     <input type="hidden" name="recipeId" value="{{recipeId}}">
-                    <input type="submit" value="update comment" class="link_button">
+                    <input type="submit" value="delete" class="link_button">
                 </form>
             {{/if}}
-        {{/if}}
+            {{#if userBool}}
+                <form action="../deleteRecipeComment" method="POST">
+                    <input type="hidden" name="commentId" value="{{comment_id}}">
+                    <input type="hidden" name="recipeId" value="{{recipeId}}">
+                    <input type="submit" value="delete" class="link_button">
+                </form>
+                {{#if update_comment}}
+                    <form action="../updateRecipeComment" method="POST">
+                        <input type="hidden" name="commentId" value="{{comment_id}}">
+                        <input type="hidden" name="recipeId" value="{{recipeId}}">  
+                        <input type="text" name="comment">
+                        <input type="submit" name="submit update">
+                    </form>
+                {{else}}
+                    <form action="../loadUpdateRecipeComment" method="POST">
+                        <input type="hidden" name="commentId" value="{{comment_id}}">
+                        <input type="hidden" name="recipeId" value="{{recipeId}}">
+                        <input type="submit" value="update comment" class="link_button">
+                    </form>
+                {{/if}}
+            {{/if}}
         </li>
     {{/each}}
 </ul>
