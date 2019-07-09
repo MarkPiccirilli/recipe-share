@@ -53,7 +53,7 @@ module.exports = function() {
     }
     */
     function getRecipeCommentsById(req, res, mysql, context, complete) {
-        var query = "SELECT id AS comment_id, comment_writer_id, comment_writer, recipe_comment, update_comment FROM recipe_comments WHERE recipe_id=?";
+        var query = "SELECT c.id AS comment_id, c.comment_writer_id, c.comment_writer, c.recipe_comment, c.update_comment, r.contributor FROM recipe_comments c INNER JOIN recipes r ON c.recipe_id = r.id WHERE c.recipe_id=?";
         var inserts = [req.params.id];
         mysql.pool.query(query, inserts, function(error, results, fields) {
             if(error) {
@@ -64,11 +64,20 @@ module.exports = function() {
             console.log(results);
             console.log(context.comments);
             for(i = 0; i < context.comments.length; i++) {
+                //set userBool to true is user is comment writer
                 if(req.isAuthenticated() && req.user[0].id == context.comments[i].comment_writer_id) {
                     context.comments[i].userBool = true;
                 }
                 else {
                     context.comments[i].userBool = false;
+                }
+                //set ownerBool to true if user contributed this recipe
+                console.log("contributor: " + context.comments[i].contributor);
+                if(req.isAuthenticated() && req.user[0].id == context.comments[i].contributor) {
+                    context.comments[i].ownerBool=true;
+                }
+                else {
+                    context.comments[i].ownerBool = false;
                 }
                 context.comments[i].recipeId = req.params.id;
             }  
@@ -88,10 +97,9 @@ module.exports = function() {
         function complete() {
             callBackCount++;
             if(callBackCount > 1) {
-                console.log("rid: " + context.rid);
                 res.render('recipeDisplay', context);
             }
-        }
+        }  
     });
     return router;
 }();
